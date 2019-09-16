@@ -1,0 +1,280 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{indentfirst}
+\author{\textit{Jiang Yicheng}\\\textit{515370910224}}
+\title{\textbf{VE203\\
+		Assignment 6}}
+\date{\today}
+\usepackage{dsfont}
+\usepackage[top=1in, bottom=1in, left= 1in, right=1in]{geometry}
+\usepackage{fancyhdr,lastpage}
+	\pagestyle{fancy}
+	\fancyhf{}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+\usepackage{multirow}
+\usepackage{gauss}
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}
+\usepackage[linesnumbered,ruled,longend]{algorithm2e}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\newcommand{\To}{\KwTo}
+\newcommand{\Ret}{\KwRet}
+\SetKwProg{Fn}{Function}{\string:}{end}
+\SetKwFunction{stgcd}{StGCD}
+\newcommand{\udots}{\mathinner{\mskip1mu\raise1pt\vbox{\kern7pt\hbox{.}}\mskip2mu\raise4pt\hbox{.}\mskip2mu\raise7pt\hbox{.}\mskip1mu}}
+\SetKwFunction{pow}{PowMod}
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 6.1} 
+\subsection*{i)}
+We prove by induction that if $a=b^d$, $\forall k\in\mathbb{N},n=b^k,f(n)=f(1)n^d+cn^dlog_bn$
+\begin{enumerate}
+\item When $n=b^0$, $f(n)=f(1)=f(1)\cdot 1^d+c\cdot1^dlog_b1$. So the statement holds for $k=0$
+\item Assume that for $k=m$ the statement holds, i.e. $f(b^m)=f(1)(b^m)^d+c(b^m)^dlog_bb^m$
+then 
+\begin{align*}
+f(b^{m+1})&=af(b^{m+1}/b)+c(b^{m+1})^d\\
+&=a(f(1)(b^m)^d+c(b^m)^dlog_bb^m)+c(b^{m+1})^d\\
+&=af(1)(b^m)^d+c(b^{m+1})^d(\dfrac{a}{b^d}log_bb^m+1)\\
+&=b^df(1)(b^m)^d+c(b^{m+1})^d(log_bb^{m}+log_bb)\\
+&=f(1)(b^{m+1})^d+c(b^{m+1})^dlog_bb^{m+1}
+\end{align*}
+So the statement also holds when $k=m+1$.
+\end{enumerate}
+
+To sum up, if $a=b^d$ and $n$ is a power of $b$, then $f(n)=f(1)n^d+cn^dlog_bn$.
+\subsection*{ii)}
+Choose $n=0$, we can get that $f(0)=af(0)$. Since $a\geqslant1$, $f(0)=0$. Since $f$ is an  increasing function, $\forall n\geqslant0$, $f(n)\geqslant f(0)=0.$ 
+
+If $n$ is a power of $b$, 
+\begin{align*}
+f(n)=f(1)n^d+cn^dlog_bn\leqslant f(1)n^dlog_bn+cn^dlog_bn<(f(1)+2c)b^dn^dlog_bn
+\end{align*}
+
+If $b^k<n<b^{k+1}$ for some $k\in\mathbb{N}$
+\begin{align*}
+f(n)&\leqslant f(b^{k+1})=f(1)(b^{k+1})^d+c(k+1)(b^{k+1})^d\\
+&<\dfrac{(f(1)+c)(b^{k+1})^d}{(b^k)^d}n^dlog_bn+cb^dk(b^k)^d\\
+&<(f(1)+c)b^dn^dlog_bn+cb^dn^dlog_bn\\
+&<(f(1)+2c)b^dn^dlog_bn
+\end{align*}
+So $\forall n\in\mathbb{N}$, $|f(n)|=f(n)<(f(1)+2c)b^dn^dlog_bn=(f(1)+2c)b^d|n^dlog_bn|$. So $f(n)=O(n^dlog_bn)$.
+
+\subsection*{iii)}
+We prove by induction that if $a\neq b^d$, $\forall k\in\mathbb{N},n=b^k,f(n)=\dfrac{b^dc}{b^d-a}n^d+(f(1)+\dfrac{b^dc}{a-b^d})n^{log_ba}$
+\begin{enumerate}
+\item When $n=b^0$, $f(n)=f(1)=\dfrac{b^dc}{b^d-a}1^d+(f(1)+\dfrac{b^dc}{a-b^d})1^{log_ba}$. So the statement holds for $k=0$
+\item Assume that for $k=m$ the statement holds, i.e. $f(b^m)=\dfrac{b^dc}{b^d-a}(b^m)^d+(f(1)+\dfrac{b^dc}{a-b^d})(b^m)^{log_ba}$
+then 
+
+\begin{align*}
+f(b^{m+1})&=af(b^{m+1}/b)+c(b^{m+1})^d\\
+&=a(\dfrac{b^dc}{b^d-a}(b^m)^d+(f(1)+\dfrac{b^dc}{a-b^d})(b^m)^{log_ba})+c(b^{m+1})^d\\
+&=\dfrac{ac}{b^d-a}(b^{m+1})^d+a(f(1)+\dfrac{b^dc}{a-b^d})a^m+c(b^{m+1})^d\\
+&=\dfrac{b^dc}{b^d-a}(b^{m+1})^d+(f(1)+\dfrac{b^dc}{a-b^d})a^{m+1}\\
+&=\dfrac{b^dc}{b^d-a}(b^{m+1})^d+(f(1)+\dfrac{b^dc}{a-b^d})(b^{m+1})^{log_ba}
+\end{align*}
+So the statement also holds when $k=m+1$.
+\end{enumerate}
+
+To sum up, if $a\neq b^d$ and $n$ is a power of $b$, then $f(n)=\dfrac{b^dc}{b^d-a}n^d+(f(1)+\dfrac{b^dc}{a-b^d})n^{log_ba}$.
+
+
+\subsection*{iv)}
+Since $a<b^d$, $log_ba<d$.
+If $b^k<n<b^{k+1}$ for some $k\in\mathbb{N}$
+\begin{align*}
+f(n)&\leqslant f(b^{k+1})=\dfrac{b^dc}{b^d-a}(b^{k+1})^d+(f(1)+\dfrac{b^dc}{a-b^d})(b^{k+1})^{log_ba}\\
+&<(\dfrac{b^dc}{b^d-a}+f(1))(b^{k+1})^d\\
+&=(\dfrac{b^dc}{b^d-a}+f(1))b^d(b^{k})^d\\
+&<(\dfrac{b^dc}{b^d-a}+f(1))b^dn^d\\
+\end{align*}
+If $n$ is a power of $b$, since $b>1$
+$$f(n)=\dfrac{b^dc}{b^d-a}n^d+(f(1)+\dfrac{b^dc}{a-b^d})n^{log_ba}<(\dfrac{b^dc}{b^d-a}+f(1))n^d<(\dfrac{b^dc}{b^d-a}+f(1))b^dn^d$$
+
+So $\forall n\in\mathbb{N}$, $|f(n)|=f(n)<(\dfrac{b^dc}{b^d-a}+f(1))b^dn^d=(\dfrac{b^dc}{b^d-a}+f(1))b^d|n^d|$. So $f(n)=O(n^d)$.
+
+
+\subsection*{v)}
+Since $a>b^d$, $log_ba>d$.
+If $b^k<n<b^{k+1}$ for some $k\in\mathbb{N}$
+\begin{align*}
+f(n)&\leqslant f(b^{k+1})=\dfrac{b^dc}{b^d-a}(b^{k+1})^d+(f(1)+\dfrac{b^dc}{a-b^d})(b^{k+1})^{log_ba}\\
+&<(\dfrac{b^dc}{a-b^d}+f(1))(b^{k+1})^{log_ba}\\
+&=(\dfrac{b^dc}{a-b^d}+f(1))b^{log_ba}(b^{k})^{log_ba}\\
+&<(\dfrac{b^dc}{b^d-a}+f(1))an^{log_ba}\\
+\end{align*}
+If $n$ is a power of $b$, since $a>1$
+$$f(n)=\dfrac{b^dc}{b^d-a}n^d+(f(1)+\dfrac{b^dc}{a-b^d})n^{log_ba}<(\dfrac{b^dc}{a-b^d}+f(1))n^{log_ba}<(\dfrac{b^dc}{a-b^d}+f(1))an^d{log_ba}$$
+
+So $\forall n\in\mathbb{N}$, $|f(n)|=f(n)<(\dfrac{b^dc}{b^d-a}+f(1))an^{log_ba}=(\dfrac{b^dc}{a-b^d}+f(1))a|n^{log_ba}|$. So $f(n)=O(n^{log_ba})$.
+
+
+\section*{Exercise 6.2}
+\subsection*{i)}
+We can find that if $n$ is even, it need one more modular multiplication besides the ones needed for $n/2$; if $n$ is odd, it need two more modular multiplication besides the ones needed for $(n-1)/2$. That is if we set the number of modular multiplications required to compute $a^n$ mod $m$ as $f(n)$, then
+$f(2n)=f(n)+1, f(2n+1)=f(n)+2$, so
+$$f(n)=f(\dfrac{n}{2})+\dfrac{3}{2}-\dfrac{1}{2}\cdot (-1)^n$$
+is a divide-and-conquer recurrence relation for the number of modular multiplications required to compute $a^n$ mod $m$.
+\subsection*{ii)}
+For the recurrence relation $f(n)=f(\dfrac{n}{2})+\dfrac{3}{2}-\dfrac{1}{2}\cdot (-1)^n$, we find that 
+$$a=1,b=2,c=\dfrac{3}{2}-\dfrac{1}{2}\cdot (-1)^n,d=0$$
+then according to Master Theorem, since $a=1=2^0=b^d$
+$$f(n)=O(n^0logn)=O(logn)$$
+So the number of modular multiplications required to compute $a^n$ mod $m$ is $O(logn)$.
+
+\section*{Exercise 6.3}
+Set the number for $01$ is $m$ and $10$ is $n$ in a bit string. We can form the bit string by inserting 1 into 0 which is a string:
+
+At initial, $m=n=0$
+\begin{enumerate}
+\item If we insert 1 before the first 0, then $m\leftarrow m,n\leftarrow n+1$. This can be done only once.
+\item If we insert 1 after the final 0, then $m\leftarrow m+1,n\leftarrow n$. This can be done only once.
+\item If we insert 1 between two 0s, then $m\leftarrow m+1,n\leftarrow n+1$.
+\item If we insert 1 between 1 and 0, then $m\leftarrow m,n\leftarrow n$.
+\item If we insert 1 between 0 and 1, then $m\leftarrow m,n\leftarrow n$.
+\item If we insert 1 between two 1s, then $m\leftarrow m,n\leftarrow n$.
+\end{enumerate}
+So we can see that the only way to change the difference between $m$ and $n$ is through 1 or 2, which can only be done once and therefore they can enlarge (do 1 or do 2 only) or reduce (did 1 before doing 2 or did 2 before doing 1) the difference between $m$ and $n$ by 1.  And the other ways will keep the difference between $m$ and $n$. Since $m=n=0$ at initial, the maximum difference between $m$ and $n$ is 1. So in a bit string, the string 01 occurs at most one more time than the string 10.
+
+\section*{Exercise 6.4}
+
+\subsection*{i)}
+For $n\in\mathbb{N}$,
+\begin{enumerate}
+\item $(p_0,q_0)=(1,1)$
+\item  $(p_{n+1},q_{n+1})=\left\{
+\begin{aligned}
+&(p_n+1,q_n-1),q_n>1\\
+&(1,p_n+1)\quad\quad\,, q_n=1\\
+\end{aligned}
+\right.
+$
+\end{enumerate}
+
+
+\subsection*{ii)}
+$\forall n\in\mathbb{N}$, we can see that
+$$p_{n+1}+q_{n+1}=p_n+q_n(q_n>1),p_{n+1}+q_{n+1}=p_n+q_n+1(q_n=1)$$
+and
+$$(p_{n+q_n-1},q_{n+q_n-1})=(p_{n+q_n-2}+1,q_{n+q_n-2}-1)=(p_n+q_n-1,q_n-q_n+1)=(p_n+q_n-1,1)$$
+so
+$$(p_{n+q_n},q_{n+q_n})=(1,p_n+q_n)$$
+then
+$$(p_{n+q_n+p_n+q_n},q_{n+q_n+p_n+q_n})=(1,p_n+q_n+1)$$
+since $(p_0,q_0)=(1,1)$, then $\forall k\in \mathbb{N}^*,\exists n\in\mathbb{N}, (p_n,q_n)=(1,k)$. Then $\forall (p,q)\in\mathbb{N}^*\times \mathbb{N}^*$, $\exists n\in\mathbb{N},(p_n,q_n)=(1,p+q-1)$. And
+$$(p_{n+p-1},q_{n+p-1})=(p_{n+p-2}+1,q_{n+p-2}-1)=(p_n+p-1,q_n-p+1)=(p,q)$$
+so $\forall (p,q)\in\mathbb{N}^*\times \mathbb{N}^*$, $\exists n\in\mathbb{N},(p_n,q_n)=(p,q)$.
+
+\subsection*{iii)}
+We prove by induction that  $\varphi(p_n,q_n)=n$
+\begin{enumerate}
+\item When $n=0$, $\varphi(p_1,q_1)=\dfrac{(1+1-1)(1+1-2)}{2}+1=1$. So the statement holds for $k=0$
+\item Assume that for $n=k$ the statement holds, i.e. $\varphi(p_k,q_k)=k$
+then 
+\begin{enumerate}
+\item $q_k=1$, then $(p_{k+1},q_{k+1})=(1,p_k+1)$. So
+\begin{align*}
+\varphi(p_{k+1},q_{k+1})&=\dfrac{(1+p_k+1-1)(1+p_k+1-2)}{2}+1\\
+&=\dfrac{(1+p_k-1)(1+p_k-2)+2p_k}{2}+1\\
+&=\dfrac{(1+p_k-1)(1+p_k-2)}{2}+p_k+1\\
+&=k+1
+\end{align*}
+\item $q_k>1$, then $(p_{k+1},q_{k+1})=(p_k+1,q_k-1)$. So
+\begin{align*}
+\varphi(p_{k+1},q_{k+1})&=\dfrac{(p_k+1+q_k-1-1)(p_k+1+q_k-1-2)}{2}+p_k+1\\
+&=\dfrac{(p_k+q_k-1)(p_k+q_k-2)}{2}+p_k+1\\
+&=k+1
+\end{align*}
+\end{enumerate}
+So the statement also holds when $n=k+1$.
+\end{enumerate}
+
+To sum up, $\varphi(p_n,q_n)=n$.
+
+
+\subsection*{iv)}
+We can see that if $(p_n,q_n)=(p_k,q_k)$, then $n=k$. And $\varphi(p_n,q_n)=n$, so $\varphi$ is injective. $\forall n\in\mathbb{N}^*$, we can find that $\varphi(p_n,q_n)=n$. So $\varphi$ is surjective. 
+
+So $\varphi$ is bijective.
+
+\subsection*{v)}
+Set $f(n)=(\dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2},\dfrac{\lfloor\sqrt{2n}\rfloor^2+\lfloor\sqrt{2n}\rfloor-2n+2}{2})$. 
+
+We can see that 
+$ \dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2},\dfrac{\lfloor\sqrt{2n}\rfloor^2+\lfloor\sqrt{2n}\rfloor-2n+2}{2}\in\mathbb{N}^*$ since we know that $\lfloor\sqrt{2n}\rfloor>\sqrt{2n}-1$, and
+\begin{align*}
+&\dfrac{(\dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2}+\dfrac{\lfloor\sqrt{2n}\rfloor^2+\lfloor\sqrt{2n}\rfloor-2n+2}{2}-1)}{2}\\
+&\cdot(\dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2}+\dfrac{\lfloor\sqrt{2n}\rfloor^2+\lfloor\sqrt{2n}\rfloor-2n+2}{2}-2)\\
+&+(\dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2})\\
+=&\dfrac{\lfloor\sqrt{2n}\rfloor(\lfloor\sqrt{2n}\rfloor-1)}{2}-(\dfrac{2n+\lfloor\sqrt{2n}\rfloor+\lfloor\sqrt{2n}\rfloor^2}{2})\\
+=&n
+\end{align*}
+so $\varphi(f(n))=n$. Since $\varphi$ is bijective, $f(n)=\varphi^{-1}(n)$. 
+
+So $\varphi^{-1}(n)=(\dfrac{2n+\lfloor\sqrt{2n}\rfloor-\lfloor\sqrt{2n}\rfloor^2}{2},\dfrac{\lfloor\sqrt{2n}\rfloor^2+\lfloor\sqrt{2n}\rfloor-2n+2}{2})$
+
+\subsection*{vi)}
+$\forall p\in\mathbb{N},q\in\mathbb{N}^*$
+$$\varphi(p,q)=\left\{
+\begin{aligned}
+&2(q-1)\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad,p=0\\
+&2(\dfrac{(p+q-1)(p+q-2)}{2}+p)+1\quad\,\,, p>0\\
+\end{aligned}
+\right.
+$$
+
+\subsection*{vii)}
+
+$\forall p\in\mathbb{Z},q\in\mathbb{N}^*$
+$$\varphi(p/q)=\left\{
+\begin{aligned}
+&3(q-1)\,\,\,\,\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad,p=0\\
+&3(\dfrac{(p+q-1)(p+q-2)}{2}+p)+1\quad\,\,\,\,\quad\quad\,, p>0\\
+&3(\dfrac{(-p+q-1)(-p+q-2)}{2}-p)+2\quad\quad\,, p<0\\
+\end{aligned}
+\right.
+$$
+
+\section*{Exercise 6.5}
+First, we treat all sets as countably infinite and the union is infinite. Denote these sets as $A_0,A_1,A_2,\cdots$
+
+Let $a_{ij}$ denote the $i^{th}$ element of $A_j$ ($i=0,1,2\cdots$, let elements in each set be in a sequence). Then this $a_{ij}$ is a bijective function $\mathbb{N}\times\mathbb{N}\rightarrow \bigcup_{i\in\mathbb{N}}A_i$. Also, according to Exercise 6.4 $vii)$, we can find a bijective function $f:\mathbb{N}\rightarrow\mathbb{N}\times\mathbb{N}$. Then $a_{f(\cdot)}:\mathbb{N}\rightarrow \bigcup_{i\in\mathbb{N}}A_i$ is a bijective function. So $\bigcup_{i\in\mathbb{N}}A_i$  is countable.
+
+Then if there is finite finite sets in total, we can arrange all elements at the begining of the sequence and let elements in other sets after them. And we can see this is also a bijective function from $\mathbb{N}$ to  $\bigcup_{i\in\mathbb{N}}A_i$. So $\bigcup_{i\in\mathbb{N}}A_i$  is countable.
+
+If there is infinite finite sets $B_0^{i_0},B_1,^{i_1},\cdots$ where $i_k$ is the number of elements in set $B_k$. Then we can arrange all elements in a sequence as the $x^{th}(x=1,2\cdots,i_y)$ element in $B_y$ at $\big(\sum\limits_{j=0}^{y-1}i_j+x\big)^{th}$ in the new sequences. And we can see this is also a bijective function from $\mathbb{N}$ to  $\bigcup_{i\in\mathbb{N}}B_i$. So $C_0=\bigcup_{i\in\mathbb{N}}B_i$  is countable. Then denote other finite sets as $C_1,C_2,\cdots$. If there are infinite sets $C$, then we can conclude that $\bigcup_{i\in\mathbb{N}}A_i=\bigcup_{i\in\mathbb{N}}C_i$ is countable. If there are finite sets $C$, set the number is $l$. Then denote $i^{th}$ element of $C_j$ ($i=0,1,2\cdots,j=0,1,\cdots,l-1$) as $a_{li+j}$. This is a bijective function from $\mathbb{N}$ to $\bigcup_{i\in\mathbb{N}}C_i$. So we can conclude that $\bigcup_{i\in\mathbb{N}}A_i=\bigcup_{i\in\mathbb{N}}C_i$ is countable. 
+
+To sum up, countable union of countable sets is countable.
+\section*{Exercise 6.6}
+Since card$M$=card$N$ and $M$,$N$ are finite sets, then $M$ and $N$ has the same number of elements in them.
+
+Assume that $M\neq N$, then since $M\subset N$, there exists some $x\in N$ such that $x\notin M$, and $\forall y\in M, y\in N$. So there is at least one more element in $N$ than in $M$. This leads to contradiction.
+
+So $M=N.$
+
+
+
+
+\section*{Exercise 6.7}
+Assume that $f$ is injective.
+
+Since $M,N$ are finite sets, according to Pigeonhole Principle, $f$ is also surjective. Then there exists a bijective function $f:M\rightarrow N$. So  card$M$=card$N$. This leads to contradiction. So our assumption is wrong.
+
+So $f$ is not injective. 
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,232 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage{float}
+\usepackage{indentfirst}
+\author{\textit{Jiang Yicheng}\\\textit{515370910224}}
+\title{\textbf{VE203\\
+		Assignment 2}}
+\date{\today}
+
+\usepackage[top=1 in, bottom=0.8 in, left= 1in, right=1 in]{geometry}
+\usepackage{fancyhdr,lastpage}
+	\pagestyle{fancy}
+	\fancyhf{}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+\usepackage{multirow}
+\usepackage{gauss}
+
+\begin{document}
+
+\maketitle
+
+\section{2 + 2 = 4}
+\subsection{}
+We define the function $\cdot+\cdot:\mathbb{N}\times\mathbb{N}\mapsto \mathbb{N}$ has the following properties:
+\begin{enumerate}
+\item $n+0=n$ 
+\item For $m\neq0$, set $m=succ(m')$, $n+m=succ(n)+m'$
+\end{enumerate}
+
+\subsection{}
+Since $n+1=succ(n),2=succ(1),3=succ(2),4=succ(3)$, then
+\begin{align*}
+2+2=2+succ(1)=succ(2)+1=3+1=succ(3)=4
+\end{align*}
+
+So we get that $2+2=4$
+
+\subsection{}
+We first prove that $\forall m,n\in\mathbb{N}, succ(n+m)=succ(n)+m$
+
+$\forall n\in\mathbb{N}$,
+\begin{enumerate}
+\item When $m=0$, $succ(n+m)=succ(n+0)=succ(n)=succ(n)+0=succ(n)+m$
+so the statement holds when $m=0$
+\item Assume that the statement holds when $m=m_0$, i.e. $succ(n+m_0)=succ(n)+m_0$, then according to definition of addition
+\begin{align*}
+succ(n+succ(m_0))&=succ(succ(n)+m_0)\\
+&=succ(succ(n))+m_0\\
+&=succ(n)+succ(m_0)
+\end{align*}
+\end{enumerate}
+
+so the statement also holds when $m=succ(m_0)$.
+
+To sum up, $\forall m,n\in\mathbb{N}, succ(n+m)=succ(n)+m$. Then we try to prove that  $\forall n\in\mathbb{N}, n+0=0+n$ 
+\begin{enumerate}
+\item When $n=0$, $n+0=0+0=0+n$
+so the statement holds when $n=0$
+\item Assume that the statement holds when $n=n_0$, i.e. $n_0+0=0+n_0$, then according to definition of addition and the statement we just prove
+\begin{align*}
+0+succ(n_0)&=succ(0)+n_0=succ(0+n_0)\\
+&=succ(n_0+0)=succ(n_0)\\
+&=succ(n_0)+0
+\end{align*}
+\end{enumerate}
+
+so the statement also holds when $n=succ(n_0)$.
+
+To sum up, $\forall n\in\mathbb{N}, n+0=0+n$. 
+
+Now we start to prove that  $\forall m,n\in\mathbb{N}, n+m=m+n$.  $\forall n\in \mathbb{N}$ 
+\begin{enumerate}
+\item When $m=0$, $n+0=0+n$ has been proved , so the statement holds when $m=0$
+\item Assume that the statement holds when $m=m_0$, i.e. $n+m_0=m_0+n$, then according to definition of addition and the statement we just prove
+\begin{align*}
+n+succ(m_0)&=succ(n)+m_0=succ(n+m_0)\\
+&=succ(m_0+n)\\
+&=succ(m_0)+n
+\end{align*}
+\end{enumerate}
+
+so the statement also holds when $m=succ(m_0)$.
+
+In conclusion, $\forall m,n\in\mathbb{N}, n+m=m+n$.
+
+\section{Straightforward Induction}
+\paragraph{Proof:}
+\begin{enumerate}
+\item When $n=1,2$, since $a_1=1=3\cdot2^{1-1}+2\cdot(-1)^1$, $a_2=8=3\cdot2^{2-1}+2\cdot(-1)^2$, so $a_n=3\cdot2^{n-1}+2\cdot(-1)^n$ holds for $n=1,2$
+
+\item Assume that $\forall n\leqslant k(k\geqslant2)$, $a_n=3\cdot2^{n-1}+2\cdot(-1)^n$ holds, then
+\begin{align*}
+a_{k+1}&=a_k+2a_{k-1}=3\cdot2^{k-1}+2\cdot(-1)^k+2\cdot(3\cdot2^{k-1-1}+2\cdot(-1)^{k-1})\\
+&=(3+3)\cdot2^{k-1}+(2-4)\cdot(-1)^k\\
+&=3\cdot2^{k+1-1}+2\cdot(-1)^{k+1}
+\end{align*}
+\end{enumerate}
+
+so the equation also holds for $n=k+1$.
+
+To sum up, $\forall n>0,a_n=3\cdot2^{n-1}+2\cdot(-1)^n$
+
+
+\section{The Fifth Peano Axiom}
+\paragraph{Proof:}Assume that there exists some non-empty set $S \subset \mathbb{N}$ doesn't have a least element, that is $\forall m\in S, \exists m_0\in S$ such that $m_0<m$.
+
+Set $T=\mathbb{N}\setminus S$. Since 0 is not the successor of any natural number, then if $0\in S$, it would be the least number in $S$. So $0\in T$.
+
+Since 1 is the successor of $0$, and since $0\notin S$, then if $1\in S$, 1 would be the least number in $S$. So $1\in T$. 
+
+Since 2 is the successor of $1$, and since $0,1\notin S$, then if $2\in S$, 2 would be the least number in $S$. So $2\in T$.
+
+Repeat this way, we can prove that for each natural number $n$, its successor is in $T$. And since $0\in T$, then according to induction axiom $T=\mathbb{N}$, and therefore $S=\varnothing$. This leads to contradiction.
+
+So such kind of set doesn't exist, and \textit{Well-Ordering Principle} holds.
+
+
+\section{Is a direct induction approach always successful?}
+First, we use induction to prove that  $(1+x)^n\geqslant1+nx$ holds for any n $\in \mathbb{N}$, where $x > -1$
+\paragraph{Proof:}
+\begin{enumerate}
+	\item When n = 0, $(1+x)^n = (1+x)^0 = 1,1+nx = 1+0 \cdot x=1$. So $(1+x)^n \geqslant 1+nx$ holds when n=0
+	\item Assume that $(1+x)^n \geqslant 1+nx$ holds when n=k, where k $\in \mathbb{N}$, i.e. $(1+x)^k \geqslant 1+kx$. Then 
+\begin{align*}
+(1+x)^{k+1} &\geqslant (1+x) \cdot (1+kx)  \\
+	&=1+kx+x+kx^2\\
+	&=(1+(k+1)x+kx^2\\
+	&\geqslant 1+(k+1)x 
+\end{align*}	
+This is because $k \in \mathbb{N}, x>-1$	
+
+So $(1+x)^n\geqslant1+nx$ also holds when $n=k+1$. 
+\end{enumerate}
+
+According to $1,2, \forall n \in\mathbb{N}$, $(1+x)^n\geqslant1+nx$.
+
+So $ \forall n \in \mathbb{N}, (1+x)^n \geqslant nx$
+
+\section{Strong Induction}
+\paragraph{Proof:}
+\begin{enumerate}
+\item When $n=1,2$, since $1=2^0,2=2^1$, then we can see that the statement holds for $n=1,2$.
+\item Assume that $\forall n\in\mathbb{N},1\leqslant n\leqslant k(k\geqslant2)$, it can be written as a sum of distinct powers of 2. Then for $n=k+1$:
+\begin{enumerate}
+\item If $k+1$ is even, then $k\geqslant\dfrac{k+1}{2}\in\mathbb{N}^*$, according to assumption we can set that $\dfrac{k+1}{2}=p_02^{0}+p_12^1+\cdots+p_{(k+1)/2}2^{(k+1)/2}(p_i\in\lbrace0,1\rbrace,i=0,1,\cdots,(k+1)/2)$. This is practical since $2^n=(1+1)^n>n\cdot1=n$. Then $k+1=p_02^{1}+p_12^2+\cdots+p_{(k+1)/2}2^{(k+1)/2+1}$ which is a sum of distinct powers of 2.
+
+\item If $k+1$ is odd, then $\dfrac{k}{2}\in\mathbb{N}^*,1\leqslant\dfrac{k}{2}\leqslant k$, according to assumption we can set that $\dfrac{k}{2}=p_02^{0}+p_12^1+\cdots+p_{k/2}2^{k/2}(p_i\in\lbrace0,1\rbrace,i=0,1,\cdots,k/2)$. Then $k+1=2^0+p_02^{1}+p_12^2+\cdots+p_{k/2}2^{k/2+1}$ which is a sum of distinct powers of 2.
+\end{enumerate}
+according to (a)(b), $k+1$ always can be written as a sum of distinct powers of 2. So, the statement also holds for $n=k+1$.
+\end{enumerate}
+
+From 1,2, every $n\in\mathbb{N}\setminus\lbrace0\rbrace$ can be written as a sum of distinct powers of 2.
+
+\section{Structural Induction}
+\paragraph{Proof:}Use structural induction to prove
+\begin{enumerate}
+\item Since $(0,0)\in S$, and $5\big|0+0$, the base case is established.
+
+\item Assume that $\forall a,b\in S, 5\big|(a+b)$, so we can set $a+b=5k,k\in\mathbb{N}$. Then $(a+2,b+3),(a+3,b+2)\in S$, and $(a+2)+(b+3)=(a+3)+(b+2)=a+b+5=5(k+1)$. Since $k+1\in \mathbb{N}$, $5\big| ((a+2)+(b+3)),5\big|((a+3)+(b+2))$.
+
+
+\end{enumerate}
+
+According to 1,2, we can see that $\forall (a,b)\in S, 5\big|(a+b)$
+
+\section{Some easy practice of relation properties}
+\subsection{x+y=0}
+\begin{enumerate}
+\item Since $1\in\mathbb{Z},1+1=2\neq0$, this shows that the relation is not reflexive.
+\item $\forall (x,y)\in R, y+x=x+y=0$, so $(y,x)\in R$. So the relation is symmetric.
+\item Since $1+(-1)=0,(-1)+1=0$, then $(1,-1),(-1,1)\in R$, while $1+1=2\neq0$,  so the relation is not transitivity.
+\end{enumerate}
+
+\subsection{2$\big|$(x-y)}
+\begin{enumerate}
+\item $\forall x\in\mathbb{Z}, (x,x)\in R$ since $2\big|0=x-x$, which shows that the relation is reflexive.
+\item $\forall (x,y)\in R$, set $x-y=2k,k\in\mathbb{Z}$. Then $y-x=-2k=2(-k)$. Since $-k\in\mathbb{Z}, 2\big|(y-x)$. So $(y,x)\in R$. So the relation is symmetric.
+\item $\forall (x,y),(y,z)\in R$, set $ x-y=2k_1, y-z=2k_2(k_1,k_2\in\mathbb{Z})$. Then $x-z=x-y+y-z=2(k_1+k_2)$. Since $k_1+k_2\in\mathbb{Z}$, $2\big|(x-z)$. So $(x,z)\in R$. So the relation is transitivity.
+\end{enumerate}
+
+
+\subsection{xy=0}
+\begin{enumerate}
+\item Since $1\in\mathbb{Z},1\cdot1=1\neq0$, this shows that the relation is not reflexive.
+\item $\forall (x,y)\in R, yx=xy=0$, so $(y,x)\in R$. So the relation is symmetric.
+\item Since $1\cdot 0=0,0\cdot 2=0$, then $(1,0),(0,2)\in R$, while $1\cdot2=2\neq0$,  so the relation is not transitivity.
+\end{enumerate}
+
+\subsection{x=1 or y=1}
+\begin{enumerate}
+\item Since $2\in\mathbb{Z},2\neq1$, then $(2,2)\notin R$. This shows that the relation is not reflexive.
+\item $\forall (x,y)\in R, x=1\vee y=1$ , so $(y,x)\in R$. So the relation is symmetric.
+\item Since $(3,1),(1,2)\in R$, while $(3,2)\notin R$, then the relation is not transitivity.
+\end{enumerate}
+
+\subsection{x=$\pm$ y}
+\begin{enumerate}
+\item $\forall x\in\mathbb{Z}, (x,x)\in R$ since $x=x$, which shows that the relation is reflexive.
+\item $\forall (x,y)\in R, x=y\vee x=-y$. So $y=x\vee y=-x$. So $(y,x)\in R$. So the relation is symmetric.
+\item $\forall (x,y),(y,z)\in R x=y\vee x=-y, y=z\vee y=-z$. Then $x=z\vee x=-z$. So $(x,z)\in R$. So the relation is transitivity.
+\end{enumerate}
+
+
+
+
+\subsection{x=2y}
+\begin{enumerate}
+\item Since $1\in\mathbb{Z},1\neq2=2\cdot1$, then $(1,1)\notin R$. This shows that the relation is not reflexive.
+\item $(2,1)\in R$, while $(1,2)\notin R$. So the relation is not symmetric.
+\item Since $(4,2),(2,1)\in R$, while $(4,1)\notin R$, then the relation is not transitivity.
+\end{enumerate}
+
+
+\subsection{xy$\geqslant0$}
+\begin{enumerate}
+\item $\forall x\in\mathbb{Z}, (x,x)\in R$ since $x\cdot x=x^2\geqslant0$, which shows that the relation is reflexive.
+\item $\forall (x,y)\in R, yx=xy\geqslant0$. So $(y,x)\in R$. So the relation is symmetric.
+\item Since $1\cdot 0=0\geqslant0,0\cdot (-1)=0\geqslant0$, then $(1,0),(0,-1)\in R$, while $1\cdot(-1)=-1<0$,  so the relation is not transitivity.
+\end{enumerate}
+
+
+
+\subsection{x=1}
+\begin{enumerate}
+\item Since $2\in\mathbb{Z},2\neq1$, then $(2,2)\notin R$. This shows that the relation is not reflexive.
+\item $(1,2)\in R$, while $(2,1)\notin R$, so the relation is not symmetric.
+\item $\forall x,y,z\in\mathbb{Z},(x,y),(y,z)\in R$, then $x=1$ and therefore $(x,z)\in R$, then the relation is transitivity.
+\end{enumerate}
+
+\end{document}

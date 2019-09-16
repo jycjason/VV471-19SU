@@ -1,0 +1,21 @@
+Since $f$ is differentiable and $f'$ is bounded in some open interval $\mathcal{I}$, $\forall x\in\mathcal{I}$
+$$\lim_{h\rightarrow0}\dfrac{f(x+h)-f(x)}{h}=c\,\,\text{exists and }|c|\leqslant C'<\infty$$
+then $\forall x\in\mathcal{I}$, $\forall \varepsilon>0, \exists \delta>0, \forall h\in(-\delta,\delta) $, $\Big|\dfrac{f(x+h)-f(x)}{h}-c\Big|<\varepsilon$
+assume that among all these $\delta$, the smallest one is $\delta_n$, i.e. 
+$\forall x\in\mathcal{I},\text{ for some }\varepsilon>0, \forall h\in(-\delta_n,\delta_n) , $
+
+\begin{align*}
+    &\varepsilon>\Big|\dfrac{f(x+h)-f(x)}{h}-c\Big|\geqslant\Big|\dfrac{f(x+h)-f(x)}{h}\Big|-|c|\\
+    \Rightarrow &|f(x+h)-f(x)|<(|c|+\varepsilon)|h|\leqslant(C'+\varepsilon)|h|<C\cdot|h|
+\end{align*}
+where $C<\infty$ is a constant.
+
+Then $\forall x_1,x_2\in\mathcal{I}$, let $k:=\max\lbrace\Big\lceil\dfrac{|x_1-x_2|}{\delta_n}\Big\rceil,2\rbrace$, and we have $h:=\dfrac{|x_1-x_2|}{k}\in(0,\delta_n)$. Assume $x_1<x_2$, then $x_2-(x_1+(k-1)h)=x_2-x_1-\dfrac{k-1}{k}(x_2-x_1)=\dfrac{x_2-x_1}{k}=h$ and 
+\begin{align*}
+    |f(x_1)-f(x_2)|=&|f(x_1)-\sum\limits_{i=1}^{k-1}\Big(f(x_1+i\cdot h)-f(x_1+i\cdot h)\Big)-f(x_2)|\\
+    =&|\sum\limits_{i=0}^{k-2}\Big(f(x_1+i\cdot h)-f(x_1+(i+1)\cdot h)\Big)+f(x_1+(k-1)h)-f(x_2)|\\
+    \leqslant&\sum\limits_{i=0}^{k-2}|\Big(f(x_1+i\cdot h)-f(x_1+(i+1)\cdot h)\Big)|+|f(x_1+(k-1)h)-f(x_2)|\\
+    <&(k-1)C\cdot|h|+C'\cdot|h|\\
+    =&C\cdot|k\cdot h|=C\cdot|x_1-x_2|
+\end{align*}
+So $f$ is Lipschitz continuous in the interval $\mathcal{I}$.

@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage[linesnumbered,ruled,longend]{algorithm2e}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\newcommand{\To}{\KwTo}
+\newcommand{\Ret}{\KwRet}
+\SetKwProg{Fn}{Function}{\string:}{end}
+\SetKwFunction{algohw}{AlgoHw}
+
+\begin{document}
+
+\begin{algorithm}[H]
+\Input{this file}
+\Output{nice algorithms in the homeworks}
+\Fn{\algohw{this file}}{
+download file\;
+open file\;
+compile file\;
+\While{not at end of this document}{
+read\;
+\uIf{understand}{
+go to next line\;
+current line becomes this one\;
+}
+\uElseIf{want to know more on algorithms in \LaTeX} {refer to \href{http://tug.ctan.org/tex-archive/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf}{algorithm2e documentation}}
+\Else {restart reading from the beginning\;}
+}
+\For{exercise $\leftarrow$ 1 \To 7}{
+	\If{algorithm is requested} {
+solve the problem\;
+A $\leftarrow $ write the algorithm in \LaTeX\;
+	}
+}
+\Ret{A}
+}
+\caption{Algorithms in the homeworks}
+\end{algorithm}
+
+\end{document}

@@ -1,0 +1,368 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage{float}
+\author{\textit{Jiang Yicheng}\\\textit{515370910224}}
+\title{\textbf{VE203\\
+		Assignment 1}}
+\date{\today}
+
+\usepackage[top=1 in, bottom=0.8 in, left= 1in, right=1 in]{geometry}
+\usepackage{fancyhdr,lastpage}
+	\pagestyle{fancy}
+	\fancyhf{}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+\usepackage{multirow}
+\usepackage{gauss}
+
+\begin{document}
+
+\maketitle
+
+\section{De Morgan's Rules}
+\subsection{}
+\begin{table}[ht]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\hline
+a & b & $\neg a$ & $\neg b$ & $a \wedge b$ & $\neg (a \wedge b)$ & $\neg a \vee \neg b$  & $\neg(a \wedge b) \Leftrightarrow \neg a \vee \neg b$\\
+\hline
+T & T & F & F & T & F & F & T\\
+\hline
+T & F & F & T & F & T & T & T\\
+\hline
+F & T & T & F & F & T & T & T\\
+\hline
+F & F & T & T & F & T & T & T\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+So $\neg(a \wedge b) \Leftrightarrow \neg a \vee \neg b$
+
+\begin{table}[ht]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\hline
+a & b & $\neg a$ & $\neg b$ & $a \vee b$ & $\neg (a \vee b)$ & $\neg a \wedge \neg b$ &   $\neg(a \vee b) \Leftrightarrow \neg a \wedge \neg b$ \\
+\hline
+T & T & F & F & T & F & F &  T\\
+\hline
+T & F & F & T & T & F & F &  T\\
+\hline
+F & T & T & F & T & F & F & T\\
+\hline
+F & F & T & T & F & T & T & T\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+So $\neg(a \vee b) \Leftrightarrow \neg a \wedge \neg b$
+
+\subsection{}
+\paragraph{} Let $A=\lbrace x:P_1(x)\rbrace,B=\lbrace x:P_2(x)\rbrace,M=\lbrace x:P(x)\rbrace$. 
+\paragraph{} Then $A\cap B=\lbrace x:P_1(x)\wedge P_2(x)\rbrace,A^{\mathrm{c}}=\lbrace x:P(x)\wedge \neg P_1(x)\rbrace,B^{\mathrm{c}}=\lbrace x:P(x)\wedge \neg P_2(x)\rbrace$. So $(A\cap B)^{\mathrm{c}}=\lbrace x:P(x)\wedge \neg (P_1(x)\wedge P_2(x))\rbrace$, $A^{\mathrm{c}}\cup B^{\mathrm{c}}=\lbrace x:(P(x)\wedge \neg P_1(x))\vee (P(x)\wedge \neg P_2(x))\rbrace$. According to \textit{Distributivity} and \textit{De Morgan's Rules}, $(P(x)\wedge \neg P_1(x))\vee (P(x)\wedge \neg P_2(x))=P(x)\wedge(\neg P_1(x)\vee\neg P_2(x))=P(x)\wedge \neg (P_1(x)\wedge P_2(x))$.
+\paragraph{}So $(A \cap B)^{\mathrm{c}} = A^{\mathrm{c}} \cup B^{\mathrm{c}}$.
+
+\paragraph{}$A\cup B=\lbrace x:P_1(x)\vee P_2(x)\rbrace$. So $(A\cup B)^{\mathrm{c}}=\lbrace x:P(x)\wedge \neg (P_1(x)\vee P_2(x))\rbrace$, $A^{\mathrm{c}}\cap B^{\mathrm{c}}=\lbrace x:(P(x)\wedge \neg P_1(x))\wedge (P(x)\wedge \neg P_2(x))\rbrace=\lbrace x:P(x)\wedge \neg P_1(x)\wedge  \neg P_2(x)\rbrace$. According to \textit{De Morgan's Rules}, $P(x)\wedge \neg P_1(x)\wedge  \neg P_2(x)=P(x)\wedge(\neg P_1(x)\wedge\neg P_2(x))=P(x)\wedge \neg (P_1(x)\vee P_2(x))$.
+
+\paragraph{} So $(A \cup B)^{\mathsf{c}} = A^{\mathsf{c}} \cap B^{\mathsf{c}}$.
+
+\section{Disjunctive Normal Form}
+\paragraph{Proof:}
+We can get a statement in the following ways with a truth table:
+\begin{enumerate}
+\item From the top to the bottom, if we find under some situation the final statement is true, then we write down a statement with the conjunction of the n propositional variables or their negations: if this time one propositional variable is true, then we use itself; if it is false, we use its negation. 
+\item We connect all these written statements with disjunction. 
+\end{enumerate}
+For example, according to the following truth table
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\hline
+A & B & X \\
+\hline
+T & T & T  \\
+\hline
+T & F & F  \\
+\hline
+F & T & F  \\
+\hline
+F & F & T \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+we can get a statement $(A\wedge B)\vee(\neg A\wedge\neg B)$. 
+
+Then we start to prove that the statement we get is what we want. First in the situation when the final statement is true, our statement is also true because of the method we use to find it. Second in those situation when the final statement is false, since each conjuctive component can only be true in one situation, now all statements we have wirtten in step 1 cannot be true and the whole statement will be false. 
+
+So the statement we have written is equivalent to the statement we want. And therefore, we can see that we can find a disjunctive normal form according to a truth table. 
+\section{Functional Completeness}
+\subsection{}
+\paragraph{} From exercise 1.2, we know that every statement can be transformed into a disjunctive normal form. So, $\lbrace\vee,\wedge,\neg\rbrace$ is functionally complete.
+
+\subsection{}
+\paragraph{}
+Every statement can be transformed into a disjunctive normal form, moreover according to  de Morgan law, statements connected with $\vee$ can be changed so that they are connected with only $\lbrace\wedge,\neg\rbrace$ as follows:
+$$A\vee B\equiv \neg (\neg A\wedge \neg B)$$
+So we can see that every compound proposition is logically equivalent to a compound proposition involving only $\lbrace\wedge,\neg\rbrace$. So $\lbrace\wedge,\neg\rbrace$ is functionally complete.
+
+
+\subsection{}
+Every statement can be transformed into a disjunctive normal form, moreover according to  de Morgan law, statements connected with $\wedge$ can be changed so that they are connected with only $\lbrace\vee,\neg\rbrace$ as follows:
+$$A\wedge B\equiv \neg (\neg A\vee \neg B)$$
+So we can see that every compound proposition is logically equivalent to a compound proposition involving only $\lbrace\vee,\neg\rbrace$. So $\lbrace\vee,\neg\rbrace$ is functionally complete.
+
+
+
+\section{Exclusive Disjunction}
+\subsection{}
+\paragraph{}Let's check the truth table for $\neg (A\wedge B)\wedge(A\vee B)$ 
+
+\begin{table}[H]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\hline
+A & B & $A\wedge B$ & $\neg (A\wedge B)$ & $A\vee B$ & $\neg (A \wedge B)\wedge(A\vee B)$ &$A\oplus B$\\
+\hline
+T & T & T & F & T & F & F\\
+\hline
+T & F & F & T & T & T & T\\
+\hline
+F & T & F & T & T & T & T\\
+\hline
+F & F & F & T & F & F & F\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{ }
+So we can see that $A\oplus B\equiv \neg (A\wedge B)\wedge(A\vee B)$
+
+\subsection{}
+\paragraph{}
+Let's check the truth table for $(A\oplus B)\oplus(A\wedge B)$ 
+
+\begin{table}[H]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\hline
+A & B & $A\wedge B$ & $A\oplus B$ & $(A\oplus B)\oplus(A\wedge B)$ &$A\vee B$\\
+\hline
+T & T & T & F & T & T \\
+\hline
+T & F & F & T & T & T \\
+\hline
+F & T & F & T & T & T \\
+\hline
+F & F & F & F & F & F \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+So we can see that $A\vee B\equiv (A\oplus B)\oplus(A\wedge B)$ 
+\subsection{}
+\paragraph{}
+Every statement can be transformed into a disjunctive normal form, moreover since 
+$$A\vee B\equiv (A\oplus B)\oplus(A\wedge B)$$
+So we can see that every compound proposition is logically equivalent to a compound proposition involving only $\lbrace\wedge,\neg,\oplus\rbrace$. So $\lbrace\wedge,\neg,\oplus\rbrace$ is functionally complete.
+
+
+\section{Functional Completeness with a Single Operator}
+\subsection{}
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\hline
+A & B & $A\wedge B$ & $A|B(i.e. \neg(A\wedge B))$ \\
+\hline
+T & T & T & F \\
+\hline
+T & F & F & T \\
+\hline
+F & T & F & T \\
+\hline
+F & F & F & T \\
+\hline
+\hline
+\end{tabular}
+\caption{Truth table for $A|B$}
+\end{table}
+
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\hline
+A & B & $A\vee B$ & $A\downarrow B(i.e. \neg(A\vee B))$ \\
+\hline
+T & T & T & F \\
+\hline
+T & F & T & F \\
+\hline
+F & T & T & F \\
+\hline
+F & F & F & T \\
+\hline
+\hline
+\end{tabular}
+\caption{Truth table for $A\downarrow B$}
+\end{table}
+
+\subsection{}
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\hline
+A & $\neg A$ & $A\downarrow A$ & $\neg A\Leftrightarrow A\downarrow A$ \\
+\hline
+T & F & F & T\\
+\hline
+F & T & T & T\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+\paragraph{}So $\neg A\equiv A\downarrow A$
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\hline
+A & B & $A\downarrow B$ & $(A\downarrow B)\downarrow(A\downarrow B)$ & $A\vee B$ \\
+\hline
+T & T & F & T & T\\
+\hline
+T & F & F & T & T\\
+\hline
+F & T & F & T & T\\
+\hline
+F & F & T & F & F\\
+\hline
+\hline
+\end{tabular}
+
+\end{table}
+So $(A\downarrow B)\downarrow(A\downarrow B)\equiv A\vee  B$
+
+\subsection{}
+\paragraph{}$\lbrace\vee,\neg\rbrace$ is functionally complete. Since $(A\downarrow B)\downarrow(A\downarrow B)\equiv A\vee  B$, $\neg A\equiv A\downarrow B$, every compound proposition is logically equivalent to a compound proposition involving only $\downarrow$. So $\lbrace\downarrow\rbrace$ is functionally complete.
+
+
+\subsection{}
+\begin{align*}
+A\oplus B&=\neg (A\wedge B)\wedge (A\vee B)=\neg((A\wedge B)\vee \neg(A\vee B))\\
+&=\neg(\neg(\neg A\vee \neg B)\vee \neg(A\vee B))\\
+&=\neg((\neg A\downarrow \neg B)\vee (A\downarrow B))\\
+&=\neg((A\downarrow A)\downarrow (B\downarrow B)\vee (A\downarrow B))\\
+&=(A\downarrow A)\downarrow (B\downarrow B)\downarrow (A\downarrow B)
+\end{align*}
+So $A\oplus B=(A\downarrow A)\downarrow (B\downarrow B)\downarrow (A\downarrow B)$
+
+\subsection{}
+\begin{table}[H]
+  \centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\hline
+A & $\neg A$ & $A|A$ & $\neg A\Leftrightarrow A| A$ \\
+\hline
+T & F & F & T\\
+\hline
+F & T & T & T\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+\paragraph{}So $\neg A\equiv A| A$. Also, $(A| B)|(A| B)\equiv \neg(A|B)=\neg(\neg(A\wedge B))\equiv A\wedge B$. Since $\lbrace\wedge,\neg\rbrace$ is functionally complete, every compound proposition is logically equivalent to a compound proposition involving only $|$. So $\lbrace|\rbrace$ is functionally complete.
+
+\section{The Symmetric Difference}
+\subsection{}
+\paragraph{Proof:}
+\begin{align*}
+x \in X\bigtriangleup Y&\Leftrightarrow x\in(X\cup Y)\setminus(X\cap Y)\\
+&\Leftrightarrow x\in \lbrace x: (A(x)\vee B(x))\wedge(\neg(A(x)\wedge B(x)))\rbrace\\
+&\Leftrightarrow (A(x)\vee B(x))\wedge(\neg(A(x)\wedge B(x)))\\
+&\Leftrightarrow A(x)\oplus B(x)
+\end{align*}
+
+\paragraph{}So $x \in X\bigtriangleup Y\Leftrightarrow A(x)\oplus B(x)$
+
+\subsection{}
+\paragraph{Proof:} $x \in X\bigtriangleup Y\Leftrightarrow A(x)\oplus B(x)$, 
+$x \in (X\setminus Y)\cup(Y\setminus X)\Leftrightarrow (A(x)\wedge \neg B(x))\vee(B(x)\wedge \neg A(x))$. And we can get the truth table for these two compound statements,
+
+\begin{table}[ht]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\hline
+A & B & $\neg A$ & $\neg B$ & $A \wedge \neg B$ & $\neg A \wedge B$ & $A\oplus B$ &  $(A\wedge \neg B)\vee (B\wedge \neg A)$ \\
+\hline
+T & T & F & F & F & F & F & F \\
+\hline
+T & F & F & T & T & F & T & T \\
+\hline
+F & T & T & F & F & T & T & T \\
+\hline
+F & F & T & T & F & F & F & F \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+From the truth table, we can see that $A\oplus B\equiv(A\wedge \neg B)\vee (B\wedge \neg A)$.    And therefore, $x \in X\bigtriangleup Y\Leftrightarrow A(x)\oplus B(x)\Leftrightarrow (A(x)\wedge \neg B(x))\vee(B(x)\wedge \neg A(x))\Leftrightarrow x \in (X\setminus Y)\cup(Y\setminus X)$. So $X\bigtriangleup Y=(X\setminus Y)\cup(Y\setminus X)$.
+
+
+
+
+
+
+\subsection{}
+\paragraph{Proof:} Set $S=\lbrace x:S(x)\rbrace$ $x \in X^{\mathsf{c}}\bigtriangleup Y^{\mathsf{c}}\Leftrightarrow (S(x)\wedge\neg A(x))\oplus (S(x)\wedge\neg B(x))$, 
+ $x \in X\bigtriangleup Y\Leftrightarrow A(x)\oplus B(x)$. And we can get the truth table for these two compound statements,
+
+\begin{table}[ht]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+  \centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\hline
+A & B & S & $\neg A$ & $\neg B$ & $S(x)\wedge\neg A(x)$ & $S(x)\wedge\neg B(x)$ & $A\oplus B$ &  $(S(x)\wedge\neg A(x))$\\
+&&&&&&&&$\oplus (S(x)\wedge\neg B(x))$ \\
+\hline
+T & T & T & F & F & F & F & F & F \\
+\hline
+T & F & T & F & T & F & T & T & T \\
+\hline
+F & T & T & T & F & T & F & T & T \\
+\hline
+F & F & T & T & T & T & T & F & F \\
+\hline
+F & F & F & T & T & F & F & F & F \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+From the truth table, we can see that $A\oplus B\equiv(S(x)\wedge\neg A(x))\oplus (S(x)\wedge\neg B(x))$.    And therefore, $x \in X\bigtriangleup Y\Leftrightarrow A(x)\oplus B(x)\Leftrightarrow (S(x)\wedge\neg A(x))\oplus (S(x)\wedge\neg B(x))\Leftrightarrow x \in X^{\mathsf{c}}\bigtriangleup Y^{\mathsf{c}}$. So $X^{\mathsf{c}}\bigtriangleup Y^{\mathsf{c}}=X\bigtriangleup Y$.
+
+
+
+
+\end{document}

@@ -1,0 +1,331 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{indentfirst}
+\author{\textit{Jiang Yicheng}\\\textit{515370910224}}
+\title{\textbf{VE203\\
+		Assignment 3}}
+\date{\today}
+\usepackage{dsfont}
+\usepackage[top=0.8in, bottom=0.8in, left= 2cm, right=2cm]{geometry}
+\usepackage{fancyhdr,lastpage}
+	\pagestyle{fancy}
+	\fancyhf{}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+\usepackage{multirow}
+\usepackage{gauss}
+
+\begin{document}
+
+\maketitle
+
+\section{Roots of Unity}
+\subsection{}$\forall a,b\in S,|a\cdot b|=|a|\cdot|b|=1\cdot1=1$, so $a\cdot b\in S$.
+
+$\forall a,b,c\in S$, $a\cdot(b\cdot c)=(a\cdot b)\cdot c$ holds because of the property of multiplication of complex numbers. So the associativity holds.
+
+Since $|1|=1$ and $1\in\mathbb{C}$, $1\in S$. Moreover, $\forall a\in S$, $a\cdot 1=1\cdot a=a$, so 1 is a unit element.
+
+$\forall a\in S, |a|=1\neq0$, so $1=\dfrac{1}{|a|}=\Big|\dfrac{1}{a}\Big|$, and therefore $\dfrac{1}{a}\in S$. Since $\forall a\in S,a\cdot \dfrac{1}{a}=\dfrac{1}{a}\cdot a=1$ and 1 is a unit element, then for any element in $S$, its inverse exists in $S$.
+
+To sum up, $(S,\cdot)$ is a group.   
+
+\subsection{}
+$\forall a,b\in S(n),(a\cdot b)^n=a^n\cdot b^n =1\cdot1=1$, so $a\cdot b\in S$.
+
+$\forall a,b,c\in S(n)$, $a\cdot(b\cdot c)=(a\cdot b)\cdot c$ holds because of the property of multiplication of complex numbers. So the associativity holds.
+
+Since $1^n=1$ and $1\in\mathbb{C}$, $1\in S(n)$. Moreover, $\forall a\in S$, $a\cdot 1=1\cdot a=a$, so 1 is a unit element.
+
+$\forall a\in S(n), a^n=1\neq0$, so $1=\dfrac{1}{a^n}=\Big(\dfrac{1}{a}\Big)^n$, and therefore $\dfrac{1}{a}\in S(n)$. Since $\forall a\in S,a\cdot \dfrac{1}{a}=\dfrac{1}{a}\cdot a=1$ and 1 is a unit element, then for any element in $S(n)$, its inverse exists in $S(n)$.
+
+To sum up, $(S(n),\cdot)$ is a group.   
+
+\section{Matrix Groups}
+\subsection{}
+$\forall A(\varphi_1)=\Bigl(\begin{matrix}
+cos(\varphi_1)&-sin(\varphi_1)\\sin(\varphi_1)&cos(\varphi_1)\end{matrix}
+\Bigl),A(\varphi_2)=\Bigl(\begin{matrix}
+cos(\varphi_2)&-sin(\varphi_2)\\sin(\varphi_2)&cos(\varphi_2)\end{matrix}
+\Bigl)\in S$,
+\begin{align*}
+A(\varphi_1)\cdot A(\varphi_2)=\begin{pmatrix}
+cos(\varphi_1)&-sin(\varphi_1)\\sin(\varphi_1)&cos(\varphi_1)\end{pmatrix}\cdot \begin{pmatrix}
+cos(\varphi_2)&-sin(\varphi_2)\\sin(\varphi_2)&cos(\varphi_2) \end{pmatrix}=\begin{pmatrix}
+cos(\varphi_1+\varphi_2)&-sin(\varphi_1+\varphi_2)\\sin(\varphi_1+\varphi_2)&cos(\varphi_1+\varphi_2) \end{pmatrix}
+\end{align*}
+so $A(\varphi_1)\cdot A(\varphi_2)  \in S$.
+
+$\forall A(\varphi_1),A(\varphi_2),A(\varphi_3)\in S, A(\varphi_1)\cdot (A(\varphi_2)\cdot A(\varphi_3))=(A(\varphi_1)\cdot A(\varphi_2))\cdot A(\varphi_3)$ holds because of the property of matrix
+multiplication. So the associativity holds.
+
+Since $A(0)=\Bigl(\begin{matrix}
+1&0\\0&1\end{matrix}
+\Bigl)\in S$, and $\forall A(\varphi)\in S$, $A(0)\cdot A(\varphi)=A(\varphi)\cdot A(0)=A(\varphi)$, so $A(0)$ is a unit element.
+
+$\forall \varphi\in\mathbb{R}, A(\varphi)\in S$, $A(-\varphi)\in S$. Since \begin{align*}
+A(\varphi)\cdot A(-\varphi)&= \begin{pmatrix}
+cos(\varphi+(-\varphi))&-sin(\varphi+(-\varphi))\\sin(\varphi+(-\varphi))&cos(\varphi+(-\varphi)) \end{pmatrix}\\
+&=\begin{pmatrix}
+cos(0)&-sin(0)\\sin(0)&cos(0) \end{pmatrix}\\
+&=A(0)
+\end{align*} which is a unit element, then for any element in $S$, its inverse exists in $S$.
+
+To sum up, $(S,\cdot)$ is a group.   
+
+\subsection{}
+\begin{description}
+\item[a)]
+$\forall A,B\in SL(n,\mathbb{R}),det(A\cdot B)=det(A)\cdot det(B)=1\cdot 1=1$
+so $A\cdot B\in SL(n,\mathbb{R})$. 
+
+$\forall A,B,C\in SL(n,\mathbb{R})$, $A\cdot(B\cdot C)=(A\cdot B)\cdot C$ holds because of the property of matrix multiplication. So the associativity holds.
+
+Since $\det(\mathds{1})=1$ where $\mathds{1}$ is the unit matrix and $\mathds{1}\in Mat(n\times n,\mathbb{R})$, $\mathds{1}\in SL(n,\mathbb{R})$. And we know that $\forall A\in SL(n,\mathbb{R}),A\cdot\mathds{1}=\mathds{1}\cdot A=A$, so $\mathds{1}$ is a unit element.
+
+$\forall A\in SL(n,\mathbb{R})$, $det(A)=1$, so $A$ is invertible, i.e. $\exists A^{-1}$ such that $A\cdot A^{-1}=A^{-1}\cdot A=\mathds{1}$. Then $det(A)\cdot det(A^{-1})=det(A\cdot A^{-1})=det(\mathds{1})=1$. So $det(A^{-1})=\dfrac{1}{det(A)}=1$. So $A^{-1}\in SL(n,\mathbb{R})$.
+
+To sum up, $(SL(n,\mathbb{R}),\cdot)$ is a group.
+
+\item[b)] 
+$\forall A,B\in SL(n,\mathbb{R}),$
+\begin{align*}
+(A\cdot B)\cdot (A\cdot B)^T
+=&(A\cdot B)\cdot (B^T\cdot A^T))
+=A\cdot (B\cdot B^{-1})\cdot A^{-1}\\
+=&A\cdot \mathds{1}\cdot A^{-1}
+=A\cdot A^{-1}\\
+=&\mathds{1}
+\end{align*}
+so $(A\cdot B)^{-1}= (A\cdot B)^T$. So $A\cdot B\in SL(n,\mathbb{R})$.
+
+$\forall A,B,C\in O(n,\mathbb{R})$, $A\cdot(B\cdot C)=(A\cdot B)\cdot C$ holds because of the property of matrix multiplication. So the associativity holds.
+
+Since $(\mathds{1})^T=\mathds{1}=(\mathds{1})^{-1}$ where $\mathds{1}$ is the unit matrix, $\mathds{1}\in O(n,\mathbb{R})$. And we know that $\forall A\in O(n,\mathbb{R}),A\cdot\mathds{1}=\mathds{1}\cdot A=A$, so $\mathds{1}$ is a unit element.
+
+$\forall A\in O(n,\mathbb{R})$, $A$ is invertible,  i.e. $\exists A^{-1}$ such that $A\cdot A^{-1}=A^{-1}\cdot A=\mathds{1}$.  Then \begin{align*}
+A\cdot A^{-1}=\mathds{1}&\Rightarrow (A^{-1})^T\cdot A^T=(A\cdot A^{-1})^T=(\mathds{1})^T=\mathds{1}\Rightarrow (A^{-1})^T= (A^T)^{-1}
+\end{align*} Since $A^T=A^{-1}$, $(A^{-1})^T= (A^T)^{-1}=(A^{-1})^{-1}$. So $A^{-1}\in O(n,\mathbb{R})$.
+
+To sum up, $(O(n,\mathbb{R}),\cdot)$ is a group.
+
+\item[c)]
+From \textbf{a)b)} we can prove that $\forall A,B\in SO(n,\mathbb{R})$, $A\cdot B\in SO(n,\mathbb{R})$.
+
+$\forall A,B,C\in SO(n,\mathbb{R})$, $A\cdot(B\cdot C)=(A\cdot B)\cdot C$ holds because of the property of matrix multiplication. So the associativity holds.
+
+Since $\det(\mathds{1})=1,(\mathds{1})^T=\mathds{1}=(\mathds{1})^{-1}$ where $\mathds{1}$ is the unit matrix, $\mathds{1}\in SO(n,\mathbb{R})$. And we know that $\forall A\in SO(n,\mathbb{R}),A\cdot\mathds{1}=\mathds{1}\cdot A=A$, so $\mathds{1}$ is a unit element.
+
+$\forall A\in SO(n,\mathbb{R})$, from \textbf{a)b)}, we can prove that $\exists A^{-1}\in Mat(n\times n,\mathbb{R}), A\cdot A^{-1}=\mathds{1}, det(A^{-1})=1$ and $(A^{-1})^T=(A^{-1})^{-1}$. So $A^{-1}\in SO(n,\mathbb{R})$.
+
+To sum up, $(SO(n,\mathbb{R}),\cdot)$ is a group.
+\end{description}
+\section{}
+\subsection{}
+\begin{enumerate}
+\item $\forall m\in\mathbb{Z}, (m,m)\in R$ since $2\big|0, $i.e.$2|(m-m)$, which shows that the relation is reflexive.
+\item $\forall (m,n)\in R, 2|(n-m)$. So $2|(m-n)$. So $(n,m)\in R$. So the relation is symmetric.
+\item $\forall (m,n),(n,p)\in R, 2|(n-m),2|(p-n)$. So $2|((n-m)+(p-n))$, i.e. $2|(p-m)$. So $(m,p)\in R$.  So the relation is transitivity.
+\end{enumerate}
+
+To sum up, $\sim$ is an equivalence relation.
+\subsection{}
+Denote $2\mathbb{Z}$ as the set of all even number, and 
+ $2\mathbb{Z}+1$ as the set of all odd number. Then
+ $$2\mathbb{Z}\cap 2\mathbb{Z}+1=\varnothing,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,2\mathbb{Z}\cup 2\mathbb{Z}+1=\mathbb{Z}$$
+so $\lbrace2\mathbb{Z}, 2\mathbb{Z}+1 \rbrace$ is a partition of a set $\mathbb{Z}$. We can see that this is induced by $\sim$ since $\forall a,b\in 2\mathbb{Z}$ or $2\mathbb{Z}+1$,$2|(b-a)$, so $a\sim b$; while $\forall a\in 2\mathbb{Z}, b\in2\mathbb{Z}+1$, $b-a,a-b$ is not even number. So
+$$ a\in[b]\Leftrightarrow a\sim b\Leftrightarrow a,b\in 2\mathbb{Z}\,\,or\,\, 2\mathbb{Z}+1$$
+ 
+To sum up, the partition induced by $\sim$ is $\lbrace2\mathbb{Z}, 2\mathbb{Z}+1 \rbrace$.
+
+\subsection{}
+From 3.2 we know that $2\mathbb{Z}=[a]$ if $a$ is even and $2\mathbb{Z}+1=[a]$ if $a$ is odd. 
+\begin{enumerate}
+\item $\forall m,n\in 2\mathbb{Z}$, $m+n,m\cdot n\in2\mathbb{Z}$, so $[m+n]=2\mathbb{Z},[m\cdot n]=2\mathbb{Z}$
+\item $\forall m,n\in 2\mathbb{Z}+1$, $m+n\in2\mathbb{Z},m\cdot n\in2\mathbb{Z}+1$, so $[m+n]=2\mathbb{Z},[m\cdot n]=2\mathbb{Z}+1$
+\item $\forall m\in2\mathbb{Z},n\in 2\mathbb{Z}+1$, $m+n\in2\mathbb{Z}+1,m\cdot n\in2\mathbb{Z}$, so $[m+n]=2\mathbb{Z}+1,[m\cdot n]=2\mathbb{Z}$
+\item $\forall m\in2\mathbb{Z}+1,n\in 2\mathbb{Z}$, $m+n\in2\mathbb{Z}+1,m\cdot n\in2\mathbb{Z}$, so $[m+n]=2\mathbb{Z}+1,[m\cdot n]=2\mathbb{Z}$
+\end{enumerate}
+
+So we can see that these operations are  independent of the representatives $m$ and $n$ of each class.
+
+\subsection{}
+$\forall [a],[b]\in \mathbb{Z}_2$, since $a+b\in\mathbb{Z}$, $[a]+[b]=[a+ b]\in \mathbb{Z}_2$.
+
+$\forall [a],[b],[c]\in \mathbb{Z}_2$, $[a]+([b]+ [c])=[a]+[b+c]=[a+(b+c)]=[(a+b)+c]=[a+b]+[c]=([a]+ [b])+ [c]$. So the associativity holds.
+
+$\forall [a],[b]\in \mathbb{Z}_2$, $[a]+[b]=[a+ b]=[b+a]=[b]+[a]$. So commutativity holds.
+ 
+Since $[0]\in\mathbb{Z}_2$ and $\forall [a]\in\mathbb{Z}_2,[a]+[0]=[0]+[a]=[0+a]=[a]$, so $[0]$ is a unit element.
+
+$\forall a\in \mathbb{Z}, [a],[-a]\in\mathbb{Z}_2$, and $[a]+[-a]=[-a]+[a]=[-a+a]=[0]$ which is a unit element, so for any element in $\mathbb{Z}_2$, its inverse exists in $\mathbb{Z}_2$.
+
+\textbf{So $(\mathbb{Z}_2,+)$ is an abelian group.}  
+
+$\forall [a],[b]\in \mathbb{Z}_2$, since $a\cdot b\in\mathbb{Z}$, $[a]\cdot[b]=[a\cdot b]\in \mathbb{Z}_2$.
+
+$\forall [a],[b],[c]\in \mathbb{Z}_2$, $[a]\cdot([b]\cdot [c])=[a]\cdot[b\cdot c]=[a\cdot(b\cdot c)]=[(a\cdot b)\cdot c]=[a\cdot b]\cdot[c]=([a]\cdot [b])\cdot [c]$. So the associativity holds.
+
+$\forall [a],[b]\in \mathbb{Z}_2$, $[a]\cdot[b]=[a\cdot b]=[b\cdot a]=[b]\cdot[a]$. So commutativity holds.
+ 
+Since $[1]\in\mathbb{Z}_2$ and $\forall [a]\in\mathbb{Z}_2,[a]\cdot[1]=[1]\cdot[a]=[1\cdot a]=[a]$, so $[1]$ is a unit element.
+
+$\forall [a],[b],[c]\in \mathbb{Z}_2, [a]\cdot([b]+[c])=[a]\cdot[b+c]=[a\cdot(b+c)]=[a\cdot b+a\cdot c]=[a\cdot b]+[a\cdot c]=[a]\cdot [b]+[a]\cdot[c]$, and $([b]+[c])\cdot [a]=[a]\cdot ([b]+[c])=[a\cdot b]+[a\cdot c]=[b\cdot a]+[c\cdot a]=[b]\cdot [a]+[c]\cdot [a]$. So distributivity holds.
+
+\textbf{So $(\mathbb{Z}_2,+,\cdot)$ is a commutative ring.}
+
+Since $[0]$ is unit element
+of addition and $[1]$ is unit element of multiplication, $[0]=2\mathbb{Z},[1]=2\mathbb{Z}+1$, then $[0]\neq[1]$.
+
+$\forall [a]\in\mathbb{Z}_2\backslash\lbrace[0]\rbrace$, $a\neq 0$, so $\dfrac{1}{a}\in\mathbb{Z}$, and $[a]\cdot[\dfrac{1}{a}]=[a\cdot\dfrac{1}{a}]=[1]$
+
+\textbf{To sum up, $(\mathbb{Z}_2,+,\cdot)$ is a field.}
+
+\section{}
+Since $a,b\in \mathbb{Z}$, and $|a|+|b|\neq0$, according to Bezout's Lemma, $\exists x_0,y_0\in\mathbb{Z}$ such that
+$$gcd(a,b)=ax_0+by_0$$ 
+
+$\forall k\in\mathbb{Z}$, $k\cdot gcd(a,b)=k\cdot(ax_0+by_0)=a(kx_0)+b(ky_0)$, since $kx_0,ky_0\in\mathbb{Z}$, $k\cdot gcd(a,b)\in T(a,b)$. So all integer multiples of $gcd(a, b)$ are in $T(a,b)$.
+
+On the other hand, set $d=gcd(a,b)$, $\forall n\in T(a,b),\exists x,y\in\mathbb{Z}$, such that $n=ax+by$. Since $d|a$ and $d|b$, $d|(ax+by)$. So there exists some integer $k$ such that $n=ax+by=k\cdot d$. So $n$ is in the set of all integer multiples of $gcd(a, b)$.
+
+To sum up, $T(a,b)=\lbrace n\in\mathbb{Z}:n=ax+by,x,y\in\mathbb{Z}\rbrace$  
+is the set of all integer multiples of $gcd(a, b)$.
+
+\section{}
+$\forall n\in\mathbb{N}$, according to Division Algorithm, there exists unique $q,r\in\mathbb{Z}$ such that
+$$n=3q+r,\,\,\,\,\,\,\,\,\,\,\,\,r=0,1,2$$
+\begin{enumerate}
+\item If $n=3q+0$, then $n^2=9q^2=3\cdot 3q^2$. Since $q\in\mathbb{Z}$, $3q^2\in \mathbb{N}$. So $\exists k\in\mathbb{N}$ such that $n^2=3k$.
+\item If $n=3q+1$, then $n^2=9q^2+6q+1=3\cdot (3q^2+2q)+1$. Since $n^2\in\mathbb{N},q\in\mathbb{Z}$, $3q^2+2q\in \mathbb{Z}$. If $3q^2+2q<0$, then $3q^2+2q\leqslant-1$ and $n^2=3\cdot(3q^2+2q)+1\leqslant-2<0$ which is contradiction. So $3q^2+2q\in\mathbb{N}$. So $\exists k\in\mathbb{N}$ such that $n^2=3k+1$.
+\item If $n=3q+2$, then $n^2=9q^2+12q+4=3\cdot (3q^2+4q+1)+1$. Since $n^2\in\mathbb{N},q\in\mathbb{Z}$, $3q^2+2q\in \mathbb{Z}$. If $3q^2+4q+1<0$, then $3q^2+4q+1\leqslant-1$ and $n^2=3\cdot(3q^2+4q+1)+1\leqslant-2<0$ which is contradiction. So $3q^2+4q+1\in\mathbb{N}$.So $\exists k\in\mathbb{N}$ such that $n^2=3k+1$.
+
+\end{enumerate}
+
+To sum up, for any $n \in \mathbb{N}$ there exists a $k \in \mathbb{N}$ such that either $n^2 = 3k$ or $n^2 = 3k + 1$.
+
+\section{}
+According to Lemma 1.6.20, since $a+n,a,1,n\in\mathbb{Z}$ and $a+n=a\cdot 1+n$, then
+$$gcd(a+n,a)=gcd(a,n)$$
+Since $gcd(a,n)|n$, $gcd(a+n,a)|n$. Then $gcd(a+1,a)|1$ for $n=1$. So $gcd(a+1,a)=\pm 1 $. Since $gcd(a+1,a)>0$, $gcd(a+1,a)=1$. So $a$ and $a+1$ are relatively prime.
+
+To sum up, $gcd(a, a + n)$ divides $n$, and $a$ and $a + 1$ are always relatively prime. 
+
+\section{}
+\subsection{56x+72y=40}
+$$56x+72y=40\Leftrightarrow 7x+9y=5$$
+\begin{align*}
+9&=1\cdot7+2\\
+7&=3\cdot2+1\\
+2&=2\cdot1+0
+\end{align*}
+So according to The Euclidean Algorithm,  $gcd(7,9)=1$. And $20\cdot7-15\cdot9=5$, so $x=20,y=-15$ is a solution. So all the solutions are
+$$x=20+\dfrac{9}{1}t=20+9t,y=-15-\dfrac{7}{1}t=-15-7t,t\in\mathbb{Z}$$
+
+To sum up, all $x,y\in\mathbb{Z} $ such that $56x+72y=40$ are
+$$x=20+9t,y=-15-7t,t\in\mathbb{Z}$$
+
+\subsection{84x-439y=156}
+\begin{align*}
+-439&=-6\cdot84+65\\
+84&=1\cdot65+19\\
+65&=3\cdot19+8\\
+19&=2\cdot 8+3\\
+8&=2\cdot 3+2\\
+3&=1\cdot 2+1\\
+2&=2\cdot 1+0
+\end{align*}
+So according to The Euclidean Algorithm,  $gcd(84,-439)=1$. And $84\cdot(-25272)-439\cdot(-4836)=156$, so $x=-25272,y=-4836$ is a solution. So all the solutions are
+$$x=-25272+\dfrac{-439}{1}t=-25272-439t,y=-4836-\dfrac{84}{1}t=-4836-84t,t\in\mathbb{Z}$$
+
+To sum up, all $x,y\in\mathbb{Z} $ such that $84x-439y=156$ are
+$$x=-25272-439t,y=-4836-84t,t\in\mathbb{Z}$$
+\section{}
+\subsection{}
+Since $a,b\in \mathbb{N}\backslash\lbrace0\rbrace$, then according to Bezout's Lemma, $\exists x_0,y_0\in\mathbb{Z}$ such that
+$$1=gcd(a,b)=ax_0+by_0=ax_0-b(-y_0)$$
+
+According to Division Algorithm, set
+$$x_0=k_1\cdot b+r_1\,\,\,\,\,\,\,\,\,\,\,k_1,r_1\in\mathbb{Z},0\leqslant r_1<b$$
+$$-y_0=k_2\cdot a+r_2\,\,\,\,\,\,\,\,\,\,\,k_2,r_2\in\mathbb{Z},0\leqslant r_2<a$$
+Set $m=max\lbrace-k_1,-k_2\rbrace,n=min\lbrace-k_1-1,-k_2-1\rbrace$, then since $a,b\in \mathbb{N}\backslash\lbrace0\rbrace,\forall k\geqslant m,k\in\mathbb{Z}$
+$$x_0+kb\geqslant x_0+mb\geqslant k_1b+r_1+(-k_1)b=r_1\geqslant0$$
+$$-y_0+ka\geqslant-y_0+ma\geqslant k_2a+r_2+(-k_2)a=r_2\geqslant0$$
+And $\forall k\leqslant n,k\in\mathbb{Z}$
+$$x_0+kb\leqslant x_0+nb\leqslant k_1b+r_1+(-k_1-1)b=r_1-b<0$$
+$$-y_0+ka\leqslant-y_0+na\leqslant k_2a+r_2+(-k_2-1)a=r_2-a<0$$
+
+Then if $c\geqslant0$, $\forall k\geqslant m$, $c(x_0+kb),c(-y_0+ka)\in\mathbb{N}$,
+$$a(c(x_0+kb))-b(c(-y_0+ka))=c(ax_0+by_0)=c$$
+if $c<0$, $\forall k\leqslant n$, $c(x_0+kb),c(-y_0+ka)\in\mathbb{N}$,
+$$a(c(x_0+kb))-b(c(-y_0+ka))=c(ax_0+by_0)=c$$
+so $\forall c\in\mathbb{Z}$, there exist infinitely many solutions $x,y\in\mathbb{N}$ of the Diophantine equation $ax-by=c$.
+
+
+\subsection{}
+\begin{align*}
+-158&=-3\cdot57+13\\
+57&=4\cdot13+5\\
+13&=2\cdot5+3\\
+5&=1\cdot 3+2\\
+3&=1\cdot 2+1\\
+2&=2\cdot 1+0
+\end{align*}
+So according to The Euclidean Algorithm,  $gcd(-158,57)=1$. And $-158\cdot(-154)+57\cdot(-427)=-7$, so $x=-154,y=-427$ is a solution of $-158x+57y=-7$, i.e.$158x-57y=7,x,y\in\mathbb{Z}$. So all the solutions are
+$$x=-154+\dfrac{-57}{1}t=-154-57t,y=-427-\dfrac{158}{1}t=-427-158t,t\in\mathbb{Z}$$
+
+To find all solution in $\mathbb{N}$, let $x\geqslant0,y\geqslant0$, we get that
+\begin{align*}
+\left\{
+\begin{aligned}
+-154-57t\geqslant0\\
+-427-158t\geqslant0\\
+\end{aligned}
+\right.\Rightarrow t\leqslant-427/158\approx-2.7
+\end{align*}
+
+To sum up, all $x,y\in\mathbb{N} $ such that $158x-57y=7$ are
+$$x=-154-57t,y=-427-158t,t\leqslant-3,t\in\mathbb{Z}$$
+
+\section{}
+\subsection{}
+\paragraph{Proof:} Use induction to prove
+\begin{enumerate}
+\item When $k=0$, $n=3k+1=1$ which cannot be factored into two smaller integers each of which belongs to $S$. So 1 is a prime and the statement holds.
+
+\item Assume that when $k\leqslant m$ the statement holds, then for $k=m+1$
+\begin{enumerate}
+\item $3(m+1)+1$ is a prime
+\item $3(m+1)+1$ can be factored into two smaller integers $a,b$ each of which belongs to $S$. Then according to the assumption, $a,b$ are either prime or a product of primes. Since $3(m+1)+1=ab$, $3(m+1)+1$ is a product of primes.
+\end{enumerate}
+So $3(m+1)+1$ is either a prime or a product of primes. So the statement holds when $k=m+1$
+\end{enumerate}
+From 1.2., any member of $S$ is either prime or a product of primes.
+\subsection{}
+$$1,4,7,10,13,16,19,22,25,28,31,34
+,37,40,43,46,49,52,55,\cdots$$
+$3\cdot 73+1=220=4\cdot 55=10\cdot 22$. We can see that 4,10,22,55 are all primes, so it is possible for an element of $S$ to be factored into primes in more than one way.
+
+\section{}
+\subsection{}
+\paragraph{Proof:}Assume that $\exists k\in\mathbb{N}$, such that $4k+3$ is a prime and $4k+3|d$.
+
+Since $D$ is finite and $p$ is the largest prime in $D$, $4k+3\in D$ and$(4k+3)|(3\cdot7\cdot\cdots p)$. So $(4k+3)|(4\cdot(3\cdot7\cdot\cdots p)-d) $, i.e.$(4k+3)|1$. So $4k+3=\pm 1$. Since $k\in\mathbb{N}$, this is impossible.
+
+So no prime of the form $4\cdot k+3$ divides $d$.
+
+\subsection{}
+First we know that $2|4k,2|4k+2$, while $d$ is odd, so $d$ doesn't have prime factors in the form of $4k,4k+2$ . Since we have proved that no prime of the form $4\cdot k+3$ divides $d$, then if $d$ is not a prime, it can only have the prime factor in the form of $4k+1$.  
+$\forall k_1,k_2\in\mathbb{N}$, 
+$$(4k_1+1)(4k_2+1)=4(4k_1k_2+k_1+k_2)+1$$
+so $d$ is in the form of $4k+1$. However, since $d=4((3\cdot7\cdot\cdots p)-1)+3$ is of the form $4k+3$, this is contradiction.
+
+So we can conclude that $d$ is a prime, and therefore $d$ is not divisible by $4\cdot k+1,k\in\mathbb{N}^*$.
+
+\subsection{}
+We have seen that $d$ is a prime in the form of $4k+3$, and $d=4((3\cdot7\cdot\cdots p)-1)+3>4(2p-1)+3=8p-1>p$. So there exists some more primes of the form $4k+3$ which are greater than $p$. While we have assumed that prime of the form $4k+3$ is finite and $p$ is the largest one, then it leads to contradition. So there is an infinite number of primes of the form $4\cdot n+3$.
+
+\end{document}
